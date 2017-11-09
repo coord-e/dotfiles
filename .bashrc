@@ -67,10 +67,14 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 
+complete -C "$(which aws_completer)" aws
 source '/home/coorde/lib/azure-cli/az.completion'
+source $(brew --prefix)/etc/bash_completion.d/*
+source "$(brew --prefix)/opt/fzf/shell/completion.bash" 2> /dev/null
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 
-source /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*
 
 git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
