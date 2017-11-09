@@ -65,6 +65,8 @@ eval "$(direnv hook bash)"
 
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:./node_modules/.bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 source '/home/coorde/lib/azure-cli/az.completion'
 
