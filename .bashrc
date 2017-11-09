@@ -31,8 +31,15 @@ export EDITOR='vim'
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+case "$PLATFORM" in
+    *'linux'*) 
+        export PATH="$HOME/.linuxbrew/bin:$PATH"
+        export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+        ;;
+    *'darwin'*)
+        ;;
+esac
+
 export PATH="$(brew --prefix)/bin:$PATH"
 
 function length()
