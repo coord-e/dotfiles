@@ -77,6 +77,18 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 syntax on
 filetype indent plugin on
 
+set number
+set cursorcolumn
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
+set wrapscan
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
 if has('win32') || has('win64') || has('mac')
   set clipboard=unnamed
 else
