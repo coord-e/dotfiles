@@ -6,6 +6,10 @@ repo      = 'Shougo/neomru.vim'
 on_source = ['denite.nvim']
 
 [[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = ['denite.nvim']
+
+[[plugins]]
 repo	  = 'scrooloose/nerdtree'
 
 [[plugins]]
