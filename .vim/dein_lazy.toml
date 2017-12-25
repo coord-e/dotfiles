@@ -1,9 +1,9 @@
 [[plugins]]
-repo   = 'Shougo/unite.vim'
+repo   = 'Shougo/denite.nvim'
 
 [[plugins]]
 repo      = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
+on_source = ['denite.nvim']
 
 [[plugins]]
 repo	  = 'scrooloose/nerdtree'
