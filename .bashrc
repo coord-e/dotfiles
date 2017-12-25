@@ -40,7 +40,6 @@ case "$PLATFORM" in
         ;;
 esac
 
-export PATH="$(brew --prefix)/bin:$PATH"
 
 function length()
 {
@@ -63,11 +62,13 @@ export PS1="\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 eval "$(direnv hook bash)"
 
+export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
 complete -C "$(which aws_completer)" aws
 source '/home/coorde/lib/azure-cli/az.completion'
