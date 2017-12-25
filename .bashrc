@@ -49,16 +49,17 @@ function length()
 function init-prompt-git-branch()
 {
   git symbolic-ref HEAD 2>/dev/null >/dev/null &&
-  echo "($(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///'))"
+  echo "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
 }
 
 export PS1_GIT_BRANCH
 if which git &> /dev/null; then
-  PS1_GIT_BRANCH='\[\e[$[COLUMNS]D\]\[\e[1;31m\]\[\e[$[COLUMNS-$(length $(init-prompt-git-branch))]C\]$(init-prompt-git-branch)\[\e[$[COLUMNS]D\]\[\e[0m\]'
+  PS1_GIT_BRANCH='$(init-prompt-git-branch)'
 else
   PS1_GIT_BRANCH=
 fi
-export PS1="\[\e]0;\u@\h: \W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $PS1_GIT_BRANCH\n\$ "
+
+export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH\n❯"
 
 eval "$(direnv hook bash)"
 
@@ -85,4 +86,18 @@ sed '/^$/d') files"
   echo $FILES | xargs git add
 }
 
-fortune | pokemonsay -n
+PROMPT_COMMAND=__prompt_command
+__prompt_command() {
+    EXIT=$?
+
+    PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH"
+    
+    if [ $EXIT -eq 0 ]; then
+        PS1+="\[\e[01;32m\]"
+    else
+        PS1+="\[\e[01;31m\]"
+    fi
+    PS1+="\n❯\[\e[00m\] " 
+}
+
+#fortune | pokemonsay -n
