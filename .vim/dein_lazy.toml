@@ -1,8 +1,4 @@
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-on_i = 1
-
-[[plugins]]
 repo   = 'Shougo/unite.vim'
 
 [[plugins]]
@@ -18,3 +14,18 @@ repo	  = 'tomtom/tcomment_vim'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'tweekmonster/deoplete-clang2'
+on_ft = 'cpp'
+
+[[plugins]]
+repo = 'fszymanski/deoplete-emoji'
+on_i = 1
