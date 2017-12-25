@@ -75,17 +75,22 @@ function length()
 function init-prompt-git-branch()
 {
   git symbolic-ref HEAD 2>/dev/null >/dev/null &&
-  echo "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
+  echo -n "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
+}
+
+function init-prompt-git-unpushed()
+{
+  test -n "$(git diff --name-only master origin/master 2>/dev/null)" && echo -n "⇡"
 }
 
 export PS1_GIT_BRANCH
+export PS1_GIT_UNPUSHED
 if which git &> /dev/null; then
   PS1_GIT_BRANCH='$(init-prompt-git-branch)'
-else
-  PS1_GIT_BRANCH=
+  PS1_GIT_UNPUSHED='$(init-prompt-git-unpushed)'
 fi
 
-export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH\n❯"
+export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH $PS1_GIT_UNPUSHED\n❯"
 
 eval "$(direnv hook bash)"
 
@@ -116,7 +121,7 @@ PROMPT_COMMAND=__prompt_command
 __prompt_command() {
     EXIT=$?
 
-    PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH"
+    PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH \[\e[01;96m\]$PS1_GIT_UNPUSHED"
     
     if [ $EXIT -eq 0 ]; then
         PS1+="\[\e[01;32m\]"
