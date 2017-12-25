@@ -76,6 +76,7 @@ function init-prompt-git-branch()
 {
   git symbolic-ref HEAD 2>/dev/null >/dev/null &&
   echo -n "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
+  test -n "$(git diff)" && echo -n "*"
 }
 
 function init-prompt-git-arrows()
