@@ -13,6 +13,10 @@ if has('vim_starting')
   endif
 endif
 
+if &compatible
+  set nocompatible
+endif
+
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
