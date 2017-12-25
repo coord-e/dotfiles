@@ -43,4 +43,10 @@ nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 syntax on
 filetype indent plugin on
 
+if has('win32') || has('win64') || has('mac')
+  set clipboard=unnamed
+else
+  set clipboard=unnamed,unnamedplus
+endif
+
 set secure
