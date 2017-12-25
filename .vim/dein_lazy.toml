@@ -1,0 +1,35 @@
+[[plugins]]
+repo   = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo      = 'Shougo/neomru.vim'
+on_source = ['denite.nvim']
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = ['denite.nvim']
+
+[[plugins]]
+repo	  = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo	  = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'tweekmonster/deoplete-clang2'
+on_ft = 'cpp'
+
+[[plugins]]
+repo = 'fszymanski/deoplete-emoji'
+on_i = 1
