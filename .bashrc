@@ -98,11 +98,11 @@ export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 
 complete -C "$(which aws_completer)" aws
-source '/home/coorde/lib/azure-cli/az.completion'
+source $HOME/.travis/travis.sh
+source $HOME/lib/azure-cli/az.completion
 source $(brew --prefix)/etc/bash_completion.d/*
 source "$(brew --prefix)/opt/fzf/shell/completion.bash" 2> /dev/null
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
-
 
 git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
