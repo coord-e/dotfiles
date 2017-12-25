@@ -1,3 +1,18 @@
+if has('vim_starting')
+  set encoding=utf-8
+  scriptencoding utf-8
+
+  if !has('gui_running')
+        \ && exists('&termguicolors')
+        \ && $COLORTERM ==# 'truecolor'
+    if !has('nvim')
+      let &t_8f = "\e[38;2;%lu;%lu;%lum"
+      let &t_8b = "\e[48;2;%lu;%lu;%lum"
+    endif
+    set termguicolors       " use truecolor in term
+  endif
+endif
+
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
