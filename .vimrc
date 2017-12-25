@@ -74,11 +74,17 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+nnoremap Y y$
+
+nnoremap + <C-a>
+nnoremap - <C-x>
+
 syntax on
 filetype indent plugin on
 
 set number
 set cursorcolumn
+set display=lastline
 
 set expandtab
 set tabstop=2
@@ -88,6 +94,9 @@ set softtabstop=2
 set wrapscan
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+set showmatch
+set matchtime=1
 
 if has('win32') || has('win64') || has('mac')
   set clipboard=unnamed
