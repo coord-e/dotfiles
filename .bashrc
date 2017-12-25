@@ -58,7 +58,7 @@ export EDITOR='vim'
 # eval "$(pyenv virtualenv-init -)"
 
 case "$PLATFORM" in
-    *'linux'*) 
+    *'linux'*)
         export PATH="$HOME/.linuxbrew/bin:$PATH"
         export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
         ;;
@@ -115,7 +115,7 @@ source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
   echo $FILES | sed '/^$/d'
-  echo "Adding $(echo ${FILES:+$FILES" "} | grep -o " " | grep -c ^ | 
+  echo "Adding $(echo ${FILES:+$FILES" "} | grep -o " " | grep -c ^ |
 sed '/^$/d') files"
   echo $FILES | xargs git add
 }
@@ -125,13 +125,13 @@ __prompt_command() {
     EXIT=$?
 
     PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH \[\e[01;96m\]$PS1_GIT_ARROWS"
-    
+
     if [ $EXIT -eq 0 ]; then
         PS1+="\[\e[01;32m\]"
     else
         PS1+="\[\e[01;31m\]"
     fi
-    PS1+="\n❯\[\e[00m\] " 
+    PS1+="\n❯\[\e[00m\] "
 }
 
 #fortune | pokemonsay -n
