@@ -31,6 +31,9 @@ hook_add = '''
 repo = 'vim-scripts/sudo.vim'
 
 [[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
