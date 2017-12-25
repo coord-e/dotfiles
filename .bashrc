@@ -80,8 +80,9 @@ function init-prompt-git-branch()
 
 function init-prompt-git-arrows()
 {
-  test -n "$(git fetch &> /dev/null && git log ..origin/master 2>/dev/null)" && echo -n "⇣"
-  test -n "$(git fetch &> /dev/null && git log origin/master.. 2>/dev/null)" && echo -n "⇡"
+  git fetch &> /dev/null &
+  test -n "$(git log ..origin/master 2>/dev/null)" && echo -n "⇣"
+  test -n "$(git log origin/master.. 2>/dev/null)" && echo -n "⇡"
 }
 
 export PS1_GIT_BRANCH
