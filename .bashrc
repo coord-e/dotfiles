@@ -112,6 +112,8 @@ source $HOME/lib/azure-cli/az.completion
 source $(brew --prefix)/etc/bash_completion.d/*
 source "$(brew --prefix)/opt/fzf/shell/completion.bash" 2> /dev/null
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+source $HOME/.google-cloud-sdk/completion.bash.inc
+source $HOME/.google-cloud-sdk/path.bash.inc
 
 git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
