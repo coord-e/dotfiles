@@ -82,7 +82,6 @@ function init-prompt-git-branch()
 function init-prompt-git-arrows()
 {
   BRANCH=$(init-prompt-git-branch)
-  git fetch &> /dev/null &
   test -n "$(git log ..origin/$BRANCH 2>/dev/null)" && echo -n "⇣"
   test -n "$(git log origin/$BRANCH.. 2>/dev/null)" && echo -n "⇡"
 }
