@@ -37,6 +37,9 @@ repo = 'airblade/vim-gitgutter'
 repo = 'bronson/vim-trailing-whitespace'
 
 [[plugins]]
+repo = 'kana/vim-submode'
+
+[[plugins]]
 repo = 'roxma/nvim-yarp'
 if = ''' !has('nvim') '''
 
