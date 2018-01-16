@@ -123,6 +123,16 @@ sed '/^$/d') files"
   echo $FILES | xargs git add
 }
 
+lldb-lt() {
+  CORE_PATH="/var/cores/$(ls -t /var/cores/ | head -n 1)"
+  LAST_CMD=$(history 2 | head -n 1 | awk '{print $2;}')
+  if [ -z "$1" ]; then
+    lldb $LAST_CMD -c $CORE_PATH
+  else
+    lldb $1 -c $CORE_PATH
+  fi
+}
+
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
     EXIT=$?
