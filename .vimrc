@@ -47,6 +47,16 @@ if &compatible
   set nocompatible
 endif
 
+inoremap <silent> jj <ESC>
+
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+
+nnoremap gj j
+nnoremap gk k
+
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
