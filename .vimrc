@@ -120,6 +120,8 @@ set backupcopy=yes
 
 set background=dark
 
+set shell=/bin/bash\ -i
+
 if has('win32') || has('win64') || has('mac')
   set clipboard=unnamed
 else
