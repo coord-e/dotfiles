@@ -116,6 +116,10 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 set showmatch
 set matchtime=1
 
+set backupcopy=yes
+
+set background=dark
+
 if has('win32') || has('win64') || has('mac')
   set clipboard=unnamed
 else
