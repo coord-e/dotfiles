@@ -37,3 +37,23 @@ on_i = 1
 [[plugins]]
 repo = 'mattn/emmet-vim'
 on_ft = ['html', 'css']
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'ap/vim-css-color'
+on_ft = 'css'
+
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = 'javascript'
