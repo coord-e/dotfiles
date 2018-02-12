@@ -89,6 +89,9 @@ nnoremap Y y$
 nnoremap + <C-a>
 nnoremap - <C-x>
 
+vnoremap gy :w !pbcopy<CR><CR>
+nnoremap gp :r !pbpaste<CR><CR>
+
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
