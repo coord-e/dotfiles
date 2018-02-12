@@ -104,6 +104,9 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
+export PATH=$PATH:$HOME/.rbenv/bin
+
+eval "$(rbenv init -)"
 
 complete -C "$(which aws_completer)" aws
 source $HOME/.travis/travis.sh
