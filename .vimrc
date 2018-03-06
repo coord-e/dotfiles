@@ -92,6 +92,11 @@ nnoremap - <C-x>
 vnoremap gy :w !pbcopy<CR><CR>
 nnoremap gp :r !pbpaste<CR><CR>
 
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
