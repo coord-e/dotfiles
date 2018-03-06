@@ -13,9 +13,6 @@ on_source = ['denite.nvim']
 repo	  = 'scrooloose/nerdtree'
 
 [[plugins]]
-repo	  = 'tomtom/tcomment_vim'
-
-[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 

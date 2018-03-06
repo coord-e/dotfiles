@@ -47,3 +47,8 @@ if = ''' !has('nvim') '''
 repo = 'roxma/vim-hug-neovim-rpc'
 if = ''' !has('nvim') '''
 
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
