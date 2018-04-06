@@ -52,25 +52,14 @@ fi
 
 export EDITOR='vim'
 
-# export PYENV_ROOT=$HOME/.pyenv
-# export PATH=$PYENV_ROOT/bin:$PATH
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
 case "$PLATFORM" in
     *'linux'*)
-        export PATH="$HOME/.linuxbrew/bin:$PATH"
+        export PATH="$PATH:$HOME/.linuxbrew/bin"
         export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
         ;;
     *'darwin'*)
         ;;
 esac
-
-
-function length()
-{
-  echo -n ${#1}
-}
 
 function init-prompt-git-branch()
 {
@@ -106,18 +95,31 @@ export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
 
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/bin:$PATH
+
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 eval "$(rbenv init -)"
 
 complete -C "$(which aws_completer)" aws
 source $HOME/.travis/travis.sh
 source $HOME/lib/azure-cli/az.completion
 source $(brew --prefix)/etc/bash_completion.d/*
-source "$(brew --prefix)/opt/fzf/shell/completion.bash" 2> /dev/null
+source "$(brew --prefix)/opt/fzf/shell/completion.bash"
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 source $HOME/.google-cloud-sdk/completion.bash.inc
 source $HOME/.google-cloud-sdk/path.bash.inc
 
-git-add-untracked () {
+export HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+export HISTFILESIZE=100000
+
+function git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
   echo $FILES | sed '/^$/d'
   echo "Adding $(echo ${FILES:+$FILES" "} | grep -o " " | grep -c ^ |
@@ -125,7 +127,7 @@ sed '/^$/d') files"
   echo $FILES | xargs git add
 }
 
-lldb-lt() {
+function lldb-lt() {
   CORE_PATH="/var/cores/$(ls -t /var/cores/ | head -n 1)"
   LAST_CMD=$(history 2 | head -n 1 | awk '{print $2;}')
   if [ -z "$1" ]; then
@@ -135,7 +137,13 @@ lldb-lt() {
   fi
 }
 
-PROMPT_COMMAND=__prompt_command
+function mkempty() {
+  mkdir $1
+  touch $1/.gitkeep
+}
+
+# PROMPT_COMMAND=__prompt_command
+export PROMPT_COMMAND="history -a; history -c; history -r; __prompt_command"
 __prompt_command() {
     EXIT=$?
 
