@@ -1,3 +1,5 @@
 [user]
 	email = me@coord-e.com
 	name = coord.e
+[init]
+	templatedir = ~/.git-templates/git-secrets
