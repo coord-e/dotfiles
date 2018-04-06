@@ -15,6 +15,8 @@ alias pbpaste='xsel --clipboard --output'
 alias vi='vim'
 alias tolower='tr "[:upper:]" "[:lower:]"'
 alias toupper='tr "[:lower:]" "[:upper:]"'
+alias printvar='set -o posix; set'
+alias git-ls-untracked='git ls-files --other --exclude-standard'
 
 export PLATFORM
 case "$(uname | tolower)" in
