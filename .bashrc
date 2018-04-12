@@ -63,6 +63,11 @@ case "$PLATFORM" in
         ;;
 esac
 
+function sourceif()
+{
+  [ -e $1 ] && source $@
+}
+
 function init-prompt-git-branch()
 {
   git symbolic-ref HEAD 2>/dev/null >/dev/null &&
@@ -109,13 +114,13 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(rbenv init -)"
 
 complete -C "$(which aws_completer)" aws
-source $HOME/.travis/travis.sh
-source $HOME/lib/azure-cli/az.completion
-source $(brew --prefix)/etc/bash_completion.d/*
-source "$(brew --prefix)/opt/fzf/shell/completion.bash"
-source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
-source $HOME/.google-cloud-sdk/completion.bash.inc
-source $HOME/.google-cloud-sdk/path.bash.inc
+sourceif $HOME/.travis/travis.sh
+sourceif $HOME/lib/azure-cli/az.completion
+sourceif $(brew --prefix)/etc/bash_completion.d/*
+sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
+sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+sourceif $HOME/.google-cloud-sdk/completion.bash.inc
+sourceif $HOME/.google-cloud-sdk/path.bash.inc
 
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
