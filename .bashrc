@@ -93,11 +93,14 @@ export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_B
 
 eval "$(direnv hook bash)"
 
+export GOPATH=$HOME/.go
+
 export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
