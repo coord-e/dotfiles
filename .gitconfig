@@ -1,5 +1,10 @@
 [user]
 	email = me@coord-e.com
 	name = coord.e
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
 [init]
 	templatedir = ~/.git-templates/git-secrets
