@@ -126,6 +126,9 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 export HISTFILESIZE=100000
 
+export USE_CCACHE=1
+export CCACHE_DIR=$HOME/.ccache
+
 function git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
   echo $FILES | sed '/^$/d'
