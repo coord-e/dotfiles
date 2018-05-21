@@ -172,4 +172,9 @@ __prompt_command() {
     PS1+="\n❯\[\e[00m\] "
 }
 
+if [ ! -v TMUX ]; then
+if type fortune pokemonsay >/dev/null 2>&1; then
+  fortune | pokemonsay -n
+fi
+fi
 
