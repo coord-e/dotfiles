@@ -121,6 +121,11 @@ sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 sourceif $HOME/.google-cloud-sdk/completion.bash.inc
 sourceif $HOME/.google-cloud-sdk/path.bash.inc
+sourceif $HOME/.gvm/scripts/gvm
+
+export NVM_DIR="$HOME/.nvm"
+sourceif "$NVM_DIR/nvm.sh"  # This loads nvm
+sourceif "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
@@ -167,6 +172,4 @@ __prompt_command() {
     PS1+="\n❯\[\e[00m\] "
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
