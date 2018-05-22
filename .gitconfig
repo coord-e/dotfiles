@@ -6,5 +6,6 @@
   ci = commit
   st = status
   br = branch
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [init]
 	templatedir = ~/.git-templates/git-secrets
