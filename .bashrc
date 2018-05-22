@@ -18,6 +18,10 @@ alias toupper='tr "[:lower:]" "[:upper:]"'
 alias printvar='set -o posix; set'
 alias git-ls-untracked='git ls-files --other --exclude-standard'
 
+alias ghci='stack ghci'
+alias ghc='stack ghc --'
+alias runghc='stack runghc --'
+
 export PLATFORM
 case "$(uname | tolower)" in
   *'linux'*)  PLATFORM='linux'   ;;
