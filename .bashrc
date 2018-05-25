@@ -142,6 +142,8 @@ export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
 export PATH=/usr/lib/ccache/:$PATH
 
+export LYNX_CFG=$HOME/.lynxrc
+
 function git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
   echo $FILES | sed '/^$/d'
