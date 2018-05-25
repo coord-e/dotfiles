@@ -140,6 +140,7 @@ export HISTFILESIZE=100000
 
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
+export PATH=/usr/lib/ccache/:$PATH
 
 function git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
