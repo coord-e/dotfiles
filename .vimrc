@@ -97,6 +97,8 @@ nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 
+nnoremap tr :NERDTree<CR>
+
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
