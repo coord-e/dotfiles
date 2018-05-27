@@ -114,6 +114,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
+export PATH=$PATH:/opt/cling/bin
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin:$PATH
