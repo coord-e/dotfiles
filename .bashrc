@@ -172,6 +172,10 @@ export PROMPT_COMMAND="history -a; history -c; history -r; __prompt_command"
 __prompt_command() {
     EXIT=$?
 
+    if [ -n "$SSH_CLIENT" ]; then
+      PS1_TEXT="remote "
+    fi
+
     PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH \[\e[01;96m\]$PS1_GIT_ARROWS"
 
     if [ $EXIT -eq 0 ]; then
@@ -179,7 +183,7 @@ __prompt_command() {
     else
         PS1+="\[\e[01;31m\]"
     fi
-    PS1+="\n❯\[\e[00m\] "
+    PS1+="\n$PS1_TEXT❯\[\e[00m\] "
 }
 
 if [ ! -v TMUX ]; then
