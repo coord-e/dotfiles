@@ -130,7 +130,7 @@ eval "$(rbenv init -)"
 complete -C "$(which aws_completer)" aws
 sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
-sourceif $(brew --prefix)/etc/bash_completion.d/*
+sourceif $(brew --prefix)/etc/bash_completion
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 sourceif $HOME/.fzf.bash
