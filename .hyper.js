@@ -26,7 +26,7 @@ module.exports = {
     cursorShape: 'UNDERLINE',
 
     // set to true for blinking cursor
-    cursorBlink: true,
+    cursorBlink: false,
 
     // color of the text
     foregroundColor: '#fff',

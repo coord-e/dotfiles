@@ -25,7 +25,7 @@ alias runghc='stack runghc --'
 export PLATFORM
 case "$(uname | tolower)" in
   *'linux'*)  PLATFORM='linux'   ;;
-  *'darwin'*) PLATFORM='osx'     ;;
+  *'darwin'*) PLATFORM='macos'   ;;
   *'bsd'*)    PLATFORM='bsd'     ;;
   *)          PLATFORM='unknown' ;;
 esac
@@ -57,6 +57,12 @@ else
 fi
 
 export EDITOR='vim'
+
+if [ "$PLATFORM" = "macos" ]; then
+  export SHELL='/usr/local/bin/bash'
+else
+  export SHELL='/bin/bash'
+fi
 
 case "$PLATFORM" in
     *'linux'*)
@@ -108,6 +114,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
+export PATH=$PATH:/opt/cling/bin
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin:$PATH
@@ -126,6 +133,7 @@ sourceif $HOME/lib/azure-cli/az.completion
 sourceif $(brew --prefix)/etc/bash_completion.d/*
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+sourceif $HOME/.fzf.bash
 sourceif $HOME/.google-cloud-sdk/completion.bash.inc
 sourceif $HOME/.google-cloud-sdk/path.bash.inc
 sourceif $HOME/.gvm/scripts/gvm
