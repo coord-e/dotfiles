@@ -132,6 +132,7 @@ sourceif $HOME/lib/azure-cli/az.completion
 sourceif $(brew --prefix)/etc/bash_completion.d/*
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+sourceif $HOME/.fzf.bash
 sourceif $HOME/.google-cloud-sdk/completion.bash.inc
 sourceif $HOME/.google-cloud-sdk/path.bash.inc
 sourceif $HOME/.gvm/scripts/gvm
