@@ -182,6 +182,8 @@ __prompt_command() {
 
     if [ -n "$SSH_CLIENT" ]; then
       PS1_TEXT="remote "
+    else
+      PS1_TEXT=" local "
     fi
 
     PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH \[\e[01;96m\]$PS1_GIT_ARROWS"
@@ -191,7 +193,7 @@ __prompt_command() {
     else
         PS1+="\[\e[01;31m\]"
     fi
-    PS1+="\n$PS1_TEXT❯\[\e[00m\] "
+    PS1+="\n${PS1_TEXT}❯\[\e[00m\] "
 }
 
 if [ ! -v TMUX ]; then
