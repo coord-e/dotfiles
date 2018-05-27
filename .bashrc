@@ -25,7 +25,7 @@ alias runghc='stack runghc --'
 export PLATFORM
 case "$(uname | tolower)" in
   *'linux'*)  PLATFORM='linux'   ;;
-  *'darwin'*) PLATFORM='osx'     ;;
+  *'darwin'*) PLATFORM='macos'   ;;
   *'bsd'*)    PLATFORM='bsd'     ;;
   *)          PLATFORM='unknown' ;;
 esac
