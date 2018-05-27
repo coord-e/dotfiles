@@ -115,6 +115,7 @@ export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
 export PATH=$PATH:/opt/cling/bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin:$PATH
