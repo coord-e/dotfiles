@@ -10,8 +10,6 @@ alias la='ls -la'
 alias l='ls -F'
 alias open='xdg-open'
 alias xclip='xclip -selection clipboard'
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
 alias vi='vim'
 alias tolower='tr "[:upper:]" "[:lower:]"'
 alias toupper='tr "[:lower:]" "[:upper:]"'
@@ -62,6 +60,8 @@ if [ "$PLATFORM" = "macos" ]; then
   export SHELL='/usr/local/bin/bash'
 else
   export SHELL='/bin/bash'
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
 fi
 
 case "$PLATFORM" in
