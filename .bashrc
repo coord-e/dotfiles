@@ -58,6 +58,12 @@ fi
 
 export EDITOR='vim'
 
+if [ "$PLATFORM" = "macos" ]; then
+  export SHELL='/usr/local/bin/bash'
+else
+  export SHELL='/bin/bash'
+fi
+
 case "$PLATFORM" in
     *'linux'*)
         export PATH="$PATH:$HOME/.linuxbrew/bin"
