@@ -15,6 +15,7 @@ alias tolower='tr "[:upper:]" "[:lower:]"'
 alias toupper='tr "[:lower:]" "[:upper:]"'
 alias printvar='set -o posix; set'
 alias git-ls-untracked='git ls-files --other --exclude-standard'
+alias cperm='find . \( -type f -exec chmod 0644 {} + \) -or \( -type d -exec chmod 0755 {} + \)'
 
 alias ghci='stack ghci'
 alias ghc='stack ghc --'
