@@ -102,6 +102,7 @@ fi
 
 export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH $PS1_GIT_ARROWS\n❯"
 
+eval "$(hub alias -s)"
 eval "$(direnv hook bash)"
 
 export GOPATH=$HOME/.go
