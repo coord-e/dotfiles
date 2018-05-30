@@ -11,3 +11,5 @@
 	templatedir = ~/.git-templates/git-secrets
 [core]
 	ignorecase = false
+[hub]
+	protocol = https
