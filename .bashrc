@@ -142,8 +142,8 @@ sourceif $HOME/.google-cloud-sdk/path.bash.inc
 sourceif $HOME/.gvm/scripts/gvm
 
 export NVM_DIR="$HOME/.nvm"
-sourceif "$NVM_DIR/nvm.sh"  # This loads nvm
-sourceif "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
+sourceif "$(brew --prefix nvm)/bash_completion"  # This loads nvm bash_completion
 
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
