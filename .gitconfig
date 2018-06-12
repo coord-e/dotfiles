@@ -13,3 +13,5 @@
 	ignorecase = false
 [hub]
 	protocol = https
+[credential]
+	helper = cache
