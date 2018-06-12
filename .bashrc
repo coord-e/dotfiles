@@ -8,7 +8,6 @@
 alias ls='ls --color=auto'
 alias la='ls -la'
 alias l='ls -F'
-alias open='xdg-open'
 alias xclip='xclip -selection clipboard'
 alias vi='vim'
 alias tolower='tr "[:upper:]" "[:lower:]"'
@@ -63,6 +62,7 @@ else
   export SHELL='/bin/bash'
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
+  alias open='xdg-open'
 fi
 
 case "$PLATFORM" in
