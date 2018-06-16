@@ -115,6 +115,8 @@ filetype indent plugin on
 set number
 set display=lastline
 
+set cursorline
+
 set expandtab
 set tabstop=2
 set shiftwidth=2
