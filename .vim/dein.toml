@@ -44,3 +44,9 @@ repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'vim-scripts/BufOnly.vim'
+
+[[plugins]]
+repo = 'tpope/vim-obsession'
