@@ -188,3 +188,7 @@ if type fortune pokemonsay >/dev/null 2>&1; then
 fi
 fi
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/coorde/.sdkman"
+[[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
