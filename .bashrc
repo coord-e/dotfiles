@@ -3,7 +3,10 @@
 #
 
 # If not running interactively, don't do anything
+
 [[ $- != *i* ]] && return
+
+bind '"jj": vi-movement-mode'
 
 alias ls='ls --color=auto'
 alias la='ls -la'
