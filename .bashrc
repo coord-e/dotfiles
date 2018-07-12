@@ -99,15 +99,6 @@ function init-prompt-git-arrows()
   test -n "$(git log origin/$BRANCH.. 2>/dev/null)" && echo -n "⇡"
 }
 
-export PS1_GIT_BRANCH
-export PS1_GIT_ARROWS
-if which git &> /dev/null; then
-  PS1_GIT_BRANCH='$(init-prompt-git-branch)'
-  PS1_GIT_ARROWS='$(init-prompt-git-arrows)'
-fi
-
-export PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH $PS1_GIT_ARROWS\n❯"
-
 eval "$(hub alias -s)"
 eval "$(direnv hook bash)"
 
@@ -135,6 +126,11 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 eval "$(rbenv init -)"
+
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+sourceif $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 
 complete -C "$(which aws_completer)" aws
 sourceif $HOME/.travis/travis.sh
@@ -184,26 +180,7 @@ function mkempty() {
   touch $1/.gitkeep
 }
 
-# PROMPT_COMMAND=__prompt_command
-export PROMPT_COMMAND="history -a; history -c; history -r; __prompt_command"
-__prompt_command() {
-    EXIT=$?
-
-    if [ -n "$SSH_CLIENT" ]; then
-      PS1_TEXT="remote "
-    else
-      PS1_TEXT=" local "
-    fi
-
-    PS1="\n\033]0;\w\007\[\033[01;34m\]\w\[\033[00m\] \[\e[01;35m\]$PS1_GIT_BRANCH \[\e[01;96m\]$PS1_GIT_ARROWS"
-
-    if [ $EXIT -eq 0 ]; then
-        PS1+="\[\e[01;32m\]"
-    else
-        PS1+="\[\e[01;31m\]"
-    fi
-    PS1+="\n${PS1_TEXT}❯\[\e[00m\] "
-}
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 if [ ! -v TMUX ]; then
 if type fortune pokemonsay >/dev/null 2>&1; then
