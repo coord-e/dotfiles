@@ -56,8 +56,10 @@ fi
 
 export EDITOR='vim'
 
+
 if [ "$PLATFORM" = "macos" ]; then
   export SHELL='/usr/local/bin/bash'
+  export LANG="ja_JP.UTF-8"
 else
   export SHELL='/bin/bash'
   alias pbcopy='xsel --clipboard --input'
