@@ -134,9 +134,11 @@ export NVM_DIR="$HOME/.nvm"
 sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
 sourceif "$(brew --prefix nvm)/bash_completion"
 
-# export HISTCONTROL=ignoredups:erasedups
-# shopt -s histappend
-# export HISTFILESIZE=100000
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
 
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
