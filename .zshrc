@@ -74,7 +74,8 @@ else
     DISTRO_VERSION=$(uname -r)
 fi
 
-export EDITOR='vim'
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 if [ "$PLATFORM" = "macos" ]; then
   export SHELL='/usr/local/bin/zsh'
