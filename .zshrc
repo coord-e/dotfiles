@@ -4,6 +4,20 @@
 
 bindkey -M viins 'jj' vi-cmd-mode
 
+setopt IGNOREEOF
+autoload -Uz colors
+colors
+
+autoload -Uz compinit
+compinit
+
+bindkey -v # vi keybind
+
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt correct
+
 alias ls='ls --color=auto'
 alias la='ls -la'
 alias l='ls -F'
