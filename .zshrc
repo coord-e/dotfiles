@@ -89,20 +89,6 @@ function sourceif()
   [ -e $1 ] && source $@
 }
 
-function init-prompt-git-branch()
-{
-  git symbolic-ref HEAD 2>/dev/null >/dev/null &&
-  echo -n "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
-  test -n "$(git diff 2>/dev/null)" && echo -n "*"
-}
-
-function init-prompt-git-arrows()
-{
-  BRANCH=$(init-prompt-git-branch)
-  test -n "$(git log ..origin/$BRANCH 2>/dev/null)" && echo -n "⇣"
-  test -n "$(git log origin/$BRANCH.. 2>/dev/null)" && echo -n "⇡"
-}
-
 eval "$(hub alias -s)"
 eval "$(direnv hook zsh)"
 
@@ -132,8 +118,6 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(rbenv init -)"
 
 powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
 source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 sourceif $(which aws_zsh_completer.sh)
@@ -148,7 +132,7 @@ sourceif $HOME/.gvm/scripts/gvm
 
 export NVM_DIR="$HOME/.nvm"
 sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
-# sourceif "$(brew --prefix nvm)/zsh_completion"  # This loads nvm zsh_completion
+sourceif "$(brew --prefix nvm)/bash_completion"
 
 # export HISTCONTROL=ignoredups:erasedups
 # shopt -s histappend
@@ -183,22 +167,15 @@ function mkempty() {
   touch $1/.gitkeep
 }
 
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 if [ ! -v TMUX ]; then
 if type fortune pokemonsay >/dev/null 2>&1; then
   fortune | pokemonsay -n
 fi
 fi
 
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/coorde/.sdkman"
-[[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
 # added by travis gem
 [ -f /home/coorde/.travis/travis.sh ] && source /home/coorde/.travis/travis.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/coorde/.sdkman"
 [[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
-
