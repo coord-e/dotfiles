@@ -2,11 +2,7 @@
 # ~/.zshrc
 #
 
-# If not running interactively, don't do anything
-
-# [[ $- != *i* ]] && return
-
-# bind '"jj": vi-movement-mode'
+bindkey -M viins 'jj' vi-cmd-mode
 
 alias ls='ls --color=auto'
 alias la='ls -la'
