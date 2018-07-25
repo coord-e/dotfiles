@@ -136,7 +136,7 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
-# complete -C "$(which aws_completer)" aws
+sourceif $(which aws_zsh_completer.sh)
 sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
