@@ -1,6 +1,7 @@
 [user]
 	email = me@coord-e.com
 	name = coord.e
+	signingkey = 74F2A57CA5354C12097C7CBECE0A2B69123F16DC
 [alias]
   co = checkout
   ci = commit
@@ -16,3 +17,5 @@
 	protocol = https
 [credential]
 	helper = cache
+[gpg]
+	program = gpg2
