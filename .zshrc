@@ -2,8 +2,6 @@
 # ~/.zshrc
 #
 
-bindkey -M viins 'jj' vi-cmd-mode
-
 setopt IGNOREEOF
 autoload -Uz colors
 colors
@@ -128,9 +126,6 @@ eval "$(pyenv virtualenv-init -)"
 
 eval "$(rbenv init -)"
 
-powerline-daemon -q
-source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-
 sourceif $(which aws_zsh_completer.sh)
 sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
@@ -201,3 +196,8 @@ export SDKMAN_DIR="/home/coorde/.sdkman"
 [[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+powerline-daemon -q
+source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+
+bindkey -M viins 'jj' vi-cmd-mode
