@@ -9,6 +9,7 @@ zstyle ':prezto:load' pmodule \
     'command-not-found' \
     'archive' \
     "completion" \
+    'git' \
     "history-substring-search" \
     "syntax-highlighting" \
     "autosuggestions"
