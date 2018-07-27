@@ -50,3 +50,6 @@ repo = 'vim-scripts/BufOnly.vim'
 
 [[plugins]]
 repo = 'tpope/vim-obsession'
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
