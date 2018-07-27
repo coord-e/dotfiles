@@ -6,11 +6,14 @@ setopt IGNOREEOF
 autoload -Uz colors
 colors
 
+fpath=(~/.zsh/completion $fpath)
+
 autoload -Uz compinit
 compinit
 
 bindkey -v # vi keybind
 
+setopt complete_aliases
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
