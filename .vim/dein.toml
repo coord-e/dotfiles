@@ -53,3 +53,12 @@ repo = 'tpope/vim-obsession'
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
+
+[[plugins]]
+repo = 'rhysd/vim-rustpeg'
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+  let g:rainbow_active = 1
+'''
