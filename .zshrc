@@ -134,7 +134,6 @@ sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
-sourceif $HOME/.fzf.zsh
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
 sourceif $HOME/.gvm/scripts/gvm
@@ -204,3 +203,5 @@ powerline-daemon -q
 source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 bindkey -M viins 'jj' vi-cmd-mode
+
+sourceif $HOME/.fzf.zsh
