@@ -104,7 +104,7 @@ function sourceif()
 eval "$(hub alias -s)"
 eval "$(direnv hook zsh)"
 
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/go
 
 export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$HOME/bin
@@ -137,6 +137,7 @@ sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
 sourceif $HOME/.gvm/scripts/gvm
+export GOPATH=$HOME/go
 
 export NVM_DIR="$HOME/.nvm"
 sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
