@@ -58,3 +58,7 @@ on_ft = 'javascript'
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+on_ft = 'javascript'
