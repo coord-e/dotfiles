@@ -122,6 +122,7 @@ set number
 set display=lastline
 
 set cursorline
+hi CursorLine cterm=bold ctermbg=darkblue ctermfg=white
 
 set expandtab
 set tabstop=2
