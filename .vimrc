@@ -118,6 +118,8 @@ python3 del powerline_setup
 syntax on
 filetype indent plugin on
 
+autocmd FileType vue syntax sync fromstart
+
 set number
 set display=lastline
 

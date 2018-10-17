@@ -62,3 +62,7 @@ on_ft = 'python'
 [[plugins]]
 repo = 'mxw/vim-jsx'
 on_ft = 'javascript'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'
