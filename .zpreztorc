@@ -1,20 +1,21 @@
 zstyle ':prezto:load' pmodule \
     'environment' \
     'terminal' \
+    'prompt' \
     'editor' \
-    "history" \
+    'history' \
     'directory' \
     'spectrum' \
     'tmux' \
     'command-not-found' \
     'archive' \
-    "completion" \
+    'completion' \
     'git' \
-    "history-substring-search" \
-    "syntax-highlighting" \
-    "autosuggestions"
+    'history-substring-search' \
+    'syntax-highlighting' \
+    'autosuggestions'
 zstyle ':prezto:module:editor' key-bindings 'vi'
 zstyle ':prezto:module:autosuggestions' color 'yes'
 zstyle ':prezto:module:autosuggestions:color' found 'fg=242'
 zstyle ':prezto:module:terminal' auto-title 'yes'
-
+zstyle ':prezto:module:prompt' theme 'pure'

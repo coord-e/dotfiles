@@ -198,9 +198,6 @@ export SDKMAN_DIR="/home/coorde/.sdkman"
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
-powerline-daemon -q
-source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-
 bindkey -M viins 'jj' vi-cmd-mode
 
 sourceif $HOME/.fzf.zsh
