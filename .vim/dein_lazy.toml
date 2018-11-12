@@ -58,3 +58,19 @@ on_ft = 'javascript'
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+on_ft = 'typescript'

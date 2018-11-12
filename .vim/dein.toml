@@ -40,7 +40,11 @@ if = ''' !has('nvim') '''
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'tpope/vim-commentary'
+repo = 'tyru/caw.vim'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'

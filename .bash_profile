@@ -11,7 +11,6 @@ fi
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=/usr/local/bin:/usr/local/opt/qt5/bin:$PATH
 export PKG_CONFIG_PATH=/usr/local/opt/qt5/lib/pkgconfig

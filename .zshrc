@@ -87,7 +87,7 @@ function sourceif()
 eval "$(hub alias -s)"
 eval "$(direnv hook zsh)"
 
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/go
 
 export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$HOME/bin
@@ -136,6 +136,7 @@ sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
 sourceif $HOME/.gvm/scripts/gvm
+export GOPATH=$HOME/go
 
 export NVM_DIR="$HOME/.nvm"
 sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
@@ -201,3 +202,52 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 bindkey -M viins 'jj' vi-cmd-mode
 
 sourceif $HOME/.fzf.zsh
+
+### Error logging
+export ERRLOGPATH=$HOME/logs
+
+function _le {
+  local file=$(mktemp)
+
+  # Run the supplied command in screen, and print the exit code on exit
+  local screen_cmd='trap '"'"'echo -en "\n"$?'"'"' EXIT; '$@
+  screen -Logfile $file -L bash -c "$screen_cmd"
+
+  # Overwrite "screen is terminating" message with empty
+  echo -ne '\033[F'
+# echo -n "[screen is terminating]"
+  echo -n "                       "
+
+  # Last line shows the exit code
+  local exit_status=$(tail -1 $file | tr -d '[:space:]')
+  sed -i '$d' $file
+
+  # Show the log as if it was directly printed to console
+  cat $file
+
+  if [ "$exit_status" == "0" ]; then
+    # If the command succeeded, remove the log
+    rm $file
+  else
+    mkdir -p $ERRLOGPATH
+    local uuid=$(python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)')
+    local cmd=$(echo "$@" | cut -d ' ' -f1 | tr -d '[:space:]')
+    local new_file="$ERRLOGPATH/$cmd-$exit_status-$uuid.log"
+    mv $file $new_file
+    echo "Saved to $new_file"
+  fi
+  return $exit_status
+}
+
+function log_error_proc {
+  if [[ -n "$BUFFER" ]]; then
+    local cmd=$(echo "$BUFFER" | cut -d ' ' -f1 | tr -d '[:space:]')
+    local targets=(clang clang++ gcc g++ python make cmake go cargo rustc node yarn npm pipenv pip docker docker-compose)
+    if [[ ${targets[(r)$cmd]} == $cmd ]]; then
+        BUFFER="_le $BUFFER"
+    fi
+  fi
+  zle .$WIDGET "$@"
+}
+zle -N accept-line log_error_proc
+
