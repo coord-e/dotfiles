@@ -136,7 +136,14 @@ eval "$(rbenv init -)"
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-sourceif $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
+case "$PLATFORM" in
+    *'linux'*)
+        source $(python3 -m site --user-site)/powerline/bindings/bash/powerline.sh
+        ;;
+    *'darwin'*)
+        source $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+        ;;
+esac
 
 complete -C "$(which aws_completer)" aws
 sourceif $HOME/.travis/travis.sh
