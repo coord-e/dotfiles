@@ -70,6 +70,7 @@ export EDITOR='vim'
 if [ "$PLATFORM" = "macos" ]; then
   export SHELL='/usr/local/bin/bash'
   export LANG="ja_JP.UTF-8"
+  export PATH="$HOME/Library/Python/3.6/bin/:$PATH"
 else
   export SHELL='/bin/bash'
   alias pbcopy='xsel --clipboard --input'
