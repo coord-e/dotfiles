@@ -129,7 +129,8 @@ module.exports = {
     'hyperlinks',
     'hypercwd',
     "verminal",
-    "hyper-dark-scrollbar"
+    "hyper-dark-scrollbar",
+    "hyper-tab-icons"
   ],
 
   // in development, you can create a directory under
