@@ -4,6 +4,9 @@
 
 module.exports = {
   config: {
+    verminal: {
+      fontFamily: '"Hack Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace'
+    },
     pokemon: 'Pikachu', // Define your favorite pokemon theme
     pokecursor: 'false', // Activaee your theme's pokecursor
     pokemonSyntax: 'light', // Define the color of the terminal tabs
@@ -138,7 +141,4 @@ module.exports = {
     // Example
     // 'window:devtools': 'cmd+alt+o',
   },
-  verminal: {
-    fontFamily: '"Hack Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace'
-  }
 };
