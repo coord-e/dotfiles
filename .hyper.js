@@ -121,7 +121,13 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: ['hyper-material-theme', 'hyperlinks', 'hypercwd'],
+  plugins: [
+    'hyper-material-theme',
+    'hyperlinks',
+    'hypercwd',
+    "verminal",
+    "hyper-dark-scrollbar"
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
@@ -132,4 +138,7 @@ module.exports = {
     // Example
     // 'window:devtools': 'cmd+alt+o',
   },
+  verminal: {
+    fontFamily: '"Hack Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace'
+  }
 };
