@@ -76,25 +76,8 @@ else
 fi
 
 export VISUAL=vim
+export LANG=ja_JP.UTF-8
 export EDITOR="$VISUAL"
-
-if [ "$PLATFORM" = "macos" ]; then
-  export SHELL='/usr/local/bin/zsh'
-else
-  export SHELL='/bin/zsh'
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
-  alias open='xdg-open'
-fi
-
-case "$PLATFORM" in
-    *'linux'*)
-        export PATH="$PATH:$HOME/.linuxbrew/bin"
-        export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-        ;;
-    *'darwin'*)
-        ;;
-esac
 
 function sourceif()
 {
@@ -121,6 +104,22 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/bin:$PATH
+
+case "$PLATFORM" in
+    *'linux'*)
+        export SHELL='/bin/zsh'
+        alias pbcopy='xsel --clipboard --input'
+        alias pbpaste='xsel --clipboard --output'
+        alias open='xdg-open'
+        export PATH="$PATH:$HOME/.linuxbrew/bin"
+        export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+        ;;
+    *'macos'*)
+        export SHELL='/usr/local/bin/zsh'
+        export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+        export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+        ;;
+esac
 
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
