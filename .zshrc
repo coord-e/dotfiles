@@ -131,8 +131,6 @@ eval "$(rbenv init -)"
 sourceif $(which aws_zsh_completer.sh)
 sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
-sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
-sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
 sourceif $HOME/.gvm/scripts/gvm
@@ -251,3 +249,7 @@ function log_error_proc {
 }
 zle -N accept-line log_error_proc
 
+sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+sourceif "/usr/share/fzf/completion.zsh"
+sourceif "/usr/share/fzf/key-bindings.zsh"
