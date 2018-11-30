@@ -66,3 +66,9 @@ repo = 'luochen1990/rainbow'
 hook_add = '''
   let g:rainbow_active = 1
 '''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
