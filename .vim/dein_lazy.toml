@@ -76,7 +76,7 @@ repo = 'Quramy/tsuquyomi'
 on_ft = 'typescript'
 
 [[plugins]]
-repo = 'the-lambda-church/coquille'
+repo = 'coord-e/coquille'
 on_ft = 'coq'
 depends = ['vimbufsync']
 
