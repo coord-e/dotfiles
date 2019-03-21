@@ -79,7 +79,3 @@ on_ft = 'typescript'
 repo = 'coord-e/coquille'
 on_ft = 'coq'
 depends = ['vimbufsync']
-
-[[plugins]]
-repo = 'jvoorhis/coq.vim'
-on_ft = 'coq'
