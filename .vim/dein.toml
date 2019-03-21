@@ -75,3 +75,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'let-def/vimbufsync'

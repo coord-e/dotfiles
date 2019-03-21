@@ -74,3 +74,12 @@ on_ft = 'typescript'
 [[plugins]]
 repo = 'Quramy/tsuquyomi'
 on_ft = 'typescript'
+
+[[plugins]]
+repo = 'the-lambda-church/coquille'
+on_ft = 'coq'
+depends = ['vimbufsync']
+
+[[plugins]]
+repo = 'jvoorhis/coq.vim'
+on_ft = 'coq'
