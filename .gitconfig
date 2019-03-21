@@ -19,3 +19,14 @@
 	helper = cache
 [gpg]
 	program = gpg2
+[merge]
+  conflictStyle = diff3
+  ff = false
+[pull]
+  ff = only
+[push]
+  default = simple
+[hub]
+  protocol = https
+[diff]
+  algorithm = histogram
