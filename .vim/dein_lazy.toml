@@ -76,6 +76,5 @@ repo = 'Quramy/tsuquyomi'
 on_ft = 'typescript'
 
 [[plugins]]
-repo = 'coord-e/coquille'
+repo = 'https://manu@framagit.org/manu/coq-au-vim.git'
 on_ft = 'coq'
-depends = ['vimbufsync']

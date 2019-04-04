@@ -100,7 +100,7 @@ nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 
 nnoremap qn :CoqNext<CR>
-nnoremap qp :CoqUndo<CR>
+nnoremap qp :CoqRewind<CR>
 nnoremap qc :CoqToCursor<CR>
 
 autocmd FileType coq setlocal commentstring=(*\ %s\ *)
