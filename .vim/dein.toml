@@ -78,3 +78,16 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'jvoorhis/coq.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+depends = ['async.vim']
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'faber-lang/faber-vim'
