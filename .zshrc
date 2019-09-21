@@ -120,6 +120,7 @@ case "$PLATFORM" in
         export SHELL='/usr/local/bin/zsh'
         export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
         export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+        export THEOS=~/theos
         ;;
 esac
 
