@@ -206,3 +206,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/coorde/.sdkman"
 [[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
