@@ -128,6 +128,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
 export PATH=$PATH:/opt/cling/bin
+export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=/usr/lib/ccache/:$PATH
 export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
