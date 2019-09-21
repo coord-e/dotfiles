@@ -2,6 +2,7 @@
 # ~/.zshrc
 #
 
+## zsh configurations
 setopt IGNOREEOF
 autoload -Uz colors
 colors
@@ -12,12 +13,26 @@ autoload -Uz compinit
 compinit
 
 bindkey -v # vi keybind
+bindkey -M viins 'jj' vi-cmd-mode
+
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
 
 setopt complete_aliases
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt correct
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_expand
+setopt inc_append_history
+setopt EXTENDED_HISTORY
 
 alias ls='ls --color=auto'
 alias la='ls -la'
@@ -148,19 +163,6 @@ sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif "/usr/share/fzf/completion.zsh"
 sourceif "/usr/share/fzf/key-bindings.zsh"
 
-export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=100000
-setopt share_history
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt hist_save_no_dups
-setopt hist_expand
-setopt inc_append_history
-setopt EXTENDED_HISTORY
-
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
 export PATH=/usr/lib/ccache/:$PATH
@@ -202,8 +204,6 @@ fi
 fi
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-bindkey -M viins 'jj' vi-cmd-mode
 
 ### Error logging
 export ERRLOGPATH=$HOME/logs
