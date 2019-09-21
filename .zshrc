@@ -34,6 +34,7 @@ setopt hist_expand
 setopt inc_append_history
 setopt EXTENDED_HISTORY
 
+## aliases
 alias ls='ls --color=auto'
 alias la='ls -la'
 alias l='ls -F'
@@ -56,6 +57,7 @@ alias runghc='stack runghc --'
 alias ssend="slack file upload --channels '@coord.e'"
 alias psend="tmux saveb - | ssend --title 'clipboard' > /dev/null"
 
+## platform detection
 export PLATFORM
 case "$(uname | tolower)" in
   *'linux'*)  PLATFORM='linux'   ;;
@@ -94,27 +96,13 @@ export VISUAL=vim
 export LANG=en_US.UTF-8
 export EDITOR="$VISUAL"
 
-function sourceif()
-{
-  [ -e $1 ] && source $@
+function sourceif() {
+  [ -e $1 ] && source $@ || true
 }
 
 export GOPATH=$HOME/go
 
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:./node_modules/.bin
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-export PATH=$PATH:$HOME/.rbenv/bin
-export PATH=$PATH:/opt/cling/bin
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/bin:$PATH
-export PATH=/bin:$PATH
-
+## platform dependent configuration
 case "$PLATFORM" in
     *'linux'*)
         export SHELL='/bin/zsh'
@@ -131,44 +119,85 @@ case "$PLATFORM" in
         ;;
 esac
 
+## PATH
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:./node_modules/.bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
+export PATH=$PATH:$HOME/.rbenv/bin
+export PATH=$PATH:/opt/cling/bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/usr/lib/ccache/:$PATH
+export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/bin:$PATH
 export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 
+## Setup tools
+### pyenv
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+### rbenv
 eval "$(rbenv init -)"
 
+### hub
 eval "$(hub alias -s)"
+
+### direnv
 eval "$(direnv hook zsh)"
 
+### awscli
 sourceif $(pyenv which aws_zsh_completer.sh)
-sourceif $HOME/.travis/travis.sh
+
+### azure-cli
 sourceif $HOME/lib/azure-cli/az.completion
+
+### google-cloud-sdk
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
+
+### gvm
 sourceif $HOME/.gvm/scripts/gvm
 
+### nvm
 export NVM_DIR="$HOME/.nvm"
 sourceif "$NVM_DIR/nvm.sh"
-sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
+sourceif "$(brew --prefix nvm)/nvm.sh"
 
+### travis-cli
 sourceif $HOME/.travis/travis.sh
 
+### fzf
 sourceif $HOME/.fzf.zsh
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif "/usr/share/fzf/completion.zsh"
 sourceif "/usr/share/fzf/key-bindings.zsh"
 
+### opam
+sourceif $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
+
+### ccache
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
-export PATH=/usr/lib/ccache/:$PATH
 
+### lynx
 export LYNX_CFG=$HOME/.lynxrc
 
+### perl
+export PERL5LIB="/home/coorde/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+export PERL_LOCAL_LIB_ROOT="/home/coorde/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+export PERL_MB_OPT="--install_base \"/home/coorde/perl5\""
+export PERL_MM_OPT="INSTALL_BASE=/home/coorde/perl5"
+
+## utility functions
 function git-add-untracked () {
   FILES=$(git ls-files --others --exclude-standard $1)
   echo $FILES | sed '/^$/d'
@@ -197,15 +226,7 @@ function mkcd() {
   cd $1
 }
 
-if [ ! -v TMUX ]; then
-if type fortune pokemonsay >/dev/null 2>&1; then
-  fortune | pokemonsay -n
-fi
-fi
-
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-### Error logging
+## error logging
 export ERRLOGPATH=$HOME/logs
 
 function _le {
@@ -253,16 +274,17 @@ function log_error_proc {
 }
 # zle -N accept-line log_error_proc
 
-# opam configuration
-test -r /home/coorde/.opam/opam-init/init.zsh && . /home/coorde/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+## greeting message
+if [ ! -v TMUX ]; then
+if type fortune pokemonsay >/dev/null 2>&1; then
+  fortune | pokemonsay -n
+fi
+fi
 
-PATH="/home/coorde/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/coorde/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/coorde/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/coorde/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/coorde/perl5"; export PERL_MM_OPT;
+## zprezto
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 sourceif "$HOME/.sdkman/bin/sdkman-init.sh"
 
