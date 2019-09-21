@@ -84,18 +84,13 @@ function sourceif()
   [ -e $1 ] && source $@
 }
 
-eval "$(hub alias -s)"
-eval "$(direnv hook zsh)"
-
 export GOPATH=$HOME/go
 
-export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
 export PATH=$PATH:$HOME/.rbenv/bin
 export PATH=$PATH:/opt/cling/bin
@@ -121,6 +116,9 @@ case "$PLATFORM" in
         ;;
 esac
 
+export PATH=$PATH:$(brew --prefix)/bin
+export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
+
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
@@ -128,17 +126,27 @@ eval "$(pyenv virtualenv-init -)"
 
 eval "$(rbenv init -)"
 
-sourceif $(which aws_zsh_completer.sh)
+eval "$(hub alias -s)"
+eval "$(direnv hook zsh)"
+
+sourceif $(pyenv which aws_zsh_completer.sh)
 sourceif $HOME/.travis/travis.sh
 sourceif $HOME/lib/azure-cli/az.completion
 sourceif $HOME/.google-cloud-sdk/completion.zsh.inc
 sourceif $HOME/.google-cloud-sdk/path.zsh.inc
 sourceif $HOME/.gvm/scripts/gvm
-export GOPATH=$HOME/go
 
 export NVM_DIR="$HOME/.nvm"
+sourceif "$NVM_DIR/nvm.sh"
 sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
-sourceif "$(brew --prefix nvm)/bash_completion"
+
+sourceif $HOME/.travis/travis.sh
+
+sourceif $HOME/.fzf.zsh
+sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+sourceif "/usr/share/fzf/completion.zsh"
+sourceif "/usr/share/fzf/key-bindings.zsh"
 
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
@@ -182,24 +190,20 @@ function mkempty() {
   touch $1/.gitkeep
 }
 
+function mkcd() {
+  mkdir $1
+  cd $1
+}
+
 if [ ! -v TMUX ]; then
 if type fortune pokemonsay >/dev/null 2>&1; then
   fortune | pokemonsay -n
 fi
 fi
 
-# added by travis gem
-[ -f /home/coorde/.travis/travis.sh ] && source /home/coorde/.travis/travis.sh
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/coorde/.sdkman"
-[[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
-
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 bindkey -M viins 'jj' vi-cmd-mode
-
-sourceif $HOME/.fzf.zsh
 
 ### Error logging
 export ERRLOGPATH=$HOME/logs
@@ -247,9 +251,18 @@ function log_error_proc {
   fi
   zle .$WIDGET "$@"
 }
-zle -N accept-line log_error_proc
+# zle -N accept-line log_error_proc
 
-sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
-sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
-sourceif "/usr/share/fzf/completion.zsh"
-sourceif "/usr/share/fzf/key-bindings.zsh"
+# opam configuration
+test -r /home/coorde/.opam/opam-init/init.zsh && . /home/coorde/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+PATH="/home/coorde/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/coorde/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/coorde/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/coorde/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/coorde/perl5"; export PERL_MM_OPT;
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+sourceif "$HOME/.sdkman/bin/sdkman-init.sh"
+
