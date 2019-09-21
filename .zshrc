@@ -137,9 +137,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=/usr/lib/ccache/:$PATH
 export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/bin:$PATH
-export PATH=/bin:$PATH
+export PATH=$PATH:/bin
+export PATH=$PATH:/usr/bin
+export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$(brew --prefix)/bin
 export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 
