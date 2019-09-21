@@ -100,6 +100,10 @@ function sourceif() {
   [ -e $1 ] && source $@ || true
 }
 
+function evalif() {
+  type $1 >/dev/null 2>&1 && eval "$2" || true
+}
+
 export GOPATH=$HOME/go
 
 ## platform dependent configuration
@@ -142,17 +146,17 @@ export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
 ### pyenv
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+evalif pyenv "$(pyenv init -)"
+evalif pyenv "$(pyenv virtualenv-init -)"
 
 ### rbenv
-eval "$(rbenv init -)"
+evalif rbenv "$(rbenv init -)"
 
 ### hub
-eval "$(hub alias -s)"
+evalif hub "$(hub alias -s)"
 
 ### direnv
-eval "$(direnv hook zsh)"
+evalif direnv "$(direnv hook zsh)"
 
 ### awscli
 sourceif $(pyenv which aws_zsh_completer.sh)
