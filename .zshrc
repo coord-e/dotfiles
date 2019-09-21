@@ -228,6 +228,7 @@ function mkcd() {
 
 ## error logging
 export ERRLOGPATH=$HOME/logs
+mkdir $ERRLOGPATH
 
 function _le {
   local file=$(mktemp)
@@ -272,7 +273,7 @@ function log_error_proc {
   fi
   zle .$WIDGET "$@"
 }
-# zle -N accept-line log_error_proc
+zle -N accept-line log_error_proc
 
 ## greeting message
 if [ ! -v TMUX ]; then
