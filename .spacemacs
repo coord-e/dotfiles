@@ -68,6 +68,8 @@ values."
    dotspacemacs-additional-packages
    '(
      key-chord
+     mozc
+     egison-mode
    )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -324,6 +326,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq auto-mode-alist (cons `("\\.egi$" . egison-mode) auto-mode-alist))
+
   (setq evil-escape-delay 0.2)
   (setq evil-escape-key-sequence "jj")
   (setq evil-escape-inhibit-functions '(evil-visual-state-p))
@@ -347,6 +351,20 @@ you should place your code here."
   (setq vc-follow-symlinks t)
   (setq auto-revert-check-vc-info t)
   (custom-set-variables '(haskell-stylish-on-save t))
+
+  (when (require 'mozc nil t)
+    (setq default-input-method "japanese-mozc")
+    ;; (defvar mozc-candidate-style) ;; avoid compile error
+  )
+
+  (evil-leader/set-key
+    "p" 'clipboard-yank
+    "y" 'clipboard-kill-ring-save
+    "d" 'clipboard-kill-region)
+
+  (load "~/dotfiles/satysfi.el")
+  (add-to-list 'auto-mode-alist '("\\.saty$" . satysfi-mode))
+  (add-to-list 'auto-mode-alist '("\\.satyh$" . satysfi-mode))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
