@@ -12,8 +12,7 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit
 
-bindkey -v # vi keybind
-bindkey -M viins 'jj' vi-cmd-mode
+bindkey -v
 
 export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=1000
@@ -183,9 +182,10 @@ sourceif $HOME/.travis/travis.sh
 ### fzf
 sourceif $HOME/.fzf.zsh
 sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
-sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 sourceif "/usr/share/fzf/completion.zsh"
-sourceif "/usr/share/fzf/key-bindings.zsh"
+# loaded after zprezto
+# sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+# sourceif "/usr/share/fzf/key-bindings.zsh"
 
 ### opam
 sourceif $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
@@ -290,6 +290,11 @@ fi
 
 ## zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+## overwrite keybinds...conflict with prezto?
+bindkey -M viins 'jj' vi-cmd-mode
+sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+sourceif "/usr/share/fzf/key-bindings.zsh"
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
