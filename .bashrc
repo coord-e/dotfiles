@@ -27,7 +27,7 @@ alias ghci='stack ghci'
 alias ghc='stack ghc --'
 alias runghc='stack runghc --'
 
-alias ssend="slack file upload --channels '@coord.e'"
+alias ssend="slack file upload --channels 'memo'"
 alias psend="tmux saveb - | ssend --title 'clipboard' > /dev/null"
 
 export PLATFORM
