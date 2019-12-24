@@ -17,7 +17,7 @@
 [hub]
 	protocol = https
 [credential]
-	helper = cache
+	helper = cache --timeout=3600
 [gpg]
 	program = gpg2
 [merge]
