@@ -190,6 +190,9 @@ sourceif "/usr/share/fzf/completion.zsh"
 ### opam
 sourceif $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 
+### nix
+sourceif $HOME/.nix-profile/etc/profile.d/nix.sh
+
 ### ccache
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
