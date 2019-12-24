@@ -15,5 +15,5 @@ cd $HOME/dotfiles
 - [zsh](http://www.zsh.org) + [zprezto](https://github.com/sorin-ionescu/prezto) (shell)
 - [bash](https://www.gnu.org/software/bash/) (scripting)
 - [tmux](http://tmux.github.io/) + [tpm](https://github.com/tmux-plugins/tpm)
-- [vim](https://www.vim.org/) + [dein.vim](https://github.com/Shougo/dein.vim)
+- [nvim](https://neovim.io/)
 - [alacritty](https://github.com/jwilm/alacritty) / [iTerm2](https://www.iterm2.com/)
