@@ -16,11 +16,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-obsession'
 Plug 'thinca/vim-qfreplace'
 Plug 'wakatime/vim-wakatime'
+Plug 'editorconfig/editorconfig-vim'
 
 " appearances
 Plug 'ryanoasis/vim-devicons'
 
 " language supports
+Plug 'tokorom/vim-review'
 Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/vim-rustpeg'
 Plug 'qnighy/satysfi.vim'
