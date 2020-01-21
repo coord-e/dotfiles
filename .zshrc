@@ -235,6 +235,15 @@ function mkcd() {
   cd $1
 }
 
+function cpd() {
+  local source="$1"
+  shift
+
+  for dist in "$@"; do
+    cp "$source" "$dist"
+  done
+}
+
 ## error logging
 export ERRLOGPATH=$HOME/logs
 mkdir $ERRLOGPATH
@@ -282,7 +291,7 @@ function log_error_proc {
   fi
   zle .$WIDGET "$@"
 }
-zle -N accept-line log_error_proc
+# zle -N accept-line log_error_proc
 
 ## greeting message
 if [ ! -v TMUX ]; then
