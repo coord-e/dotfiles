@@ -49,10 +49,6 @@ alias df='df -h'
 alias du='du -ch'
 alias cperm='find . \( -type f -exec chmod 0644 {} + \) -or \( -type d -exec chmod 0755 {} + \)'
 
-alias ghci='stack ghci'
-alias ghc='stack ghc --'
-alias runghc='stack runghc --'
-
 alias ssend="slack file upload --channels 'memo'"
 alias psend="tmux saveb - | ssend --title 'clipboard' > /dev/null"
 
@@ -193,6 +189,9 @@ sourceif $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null
 ### nix
 sourceif $HOME/.nix-profile/etc/profile.d/nix.sh
 
+### ghcup
+sourceif "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
 ### ccache
 export USE_CCACHE=1
 export CCACHE_DIR=$HOME/.ccache
@@ -311,4 +310,3 @@ sourceif "/usr/share/fzf/key-bindings.zsh"
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 sourceif "$HOME/.sdkman/bin/sdkman-init.sh"
-
