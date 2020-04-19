@@ -23,6 +23,7 @@ Plug 'ryanoasis/vim-devicons'
 
 " language supports
 Plug 'tokorom/vim-review'
+Plug 'hashivim/vim-terraform'
 Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/vim-rustpeg'
 Plug 'qnighy/satysfi.vim'
