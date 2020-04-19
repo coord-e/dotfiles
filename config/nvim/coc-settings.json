@@ -1,11 +1,13 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["haskell"],
+  "coc.preferences.formatOnSaveFiletypes": ["haskell", "rust"],
   "languageserver": {
     "haskell": {
-      "command": "hie-wrapper",
+      "command": "/home/coorde/.nix-profile/bin/hie-wrapper",
+      "args": ["--lsp"],
       "rootPatterns": [
+        "*.cabal",
         ".stack.yaml",
-        "cabal.config",
+        "cabal.project",
         "package.yaml"
       ],
       "filetypes": [
