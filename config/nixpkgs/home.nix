@@ -22,6 +22,7 @@
 
   programs.alacritty.enable = true;
   programs.chromium.enable = true;
+  programs.vscode.enable = true;
 
   xsession.windowManager.xmonad = {
     enable = true;
