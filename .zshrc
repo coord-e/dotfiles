@@ -136,18 +136,18 @@ export PATH="$HOME/perl5/bin${PATH:+:${PATH}}"
 export PATH=$PATH:/bin
 export PATH=$PATH:/usr/bin
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:$(brew --prefix)/bin
-export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
+evalif brew 'export PATH=$PATH:$(brew --prefix)/bin'
+evalif brew 'export PATH=$PATH:$(brew --prefix)/opt/fzf/bin'
 
 ## Setup tools
 ### pyenv
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
-evalif pyenv "$(pyenv init -)"
-evalif pyenv "$(pyenv virtualenv-init -)"
+evalif pyenv 'eval "$(pyenv init -)"'
+evalif pyenv 'eval "$(pyenv virtualenv-init -)"'
 
 ### rbenv
-evalif rbenv "$(rbenv init -)"
+evalif rbenv 'eval "$(rbenv init -)"'
 
 ### hub
 evalif hub "$(hub alias -s)"
@@ -156,7 +156,7 @@ evalif hub "$(hub alias -s)"
 evalif direnv "$(direnv hook zsh)"
 
 ### awscli
-sourceif $(pyenv which aws_zsh_completer.sh)
+evalif pyenv 'sourceif "$(pyenv which aws_zsh_completer.sh)"'
 
 ### azure-cli
 sourceif $HOME/lib/azure-cli/az.completion
@@ -171,15 +171,16 @@ sourceif $HOME/.gvm/scripts/gvm
 ### nvm
 export NVM_DIR="$HOME/.nvm"
 sourceif "$NVM_DIR/nvm.sh"
-sourceif "$(brew --prefix nvm)/nvm.sh"
+evalif brew 'sourceif "$(brew --prefix nvm)/nvm.sh"'
 
 ### travis-cli
 sourceif $HOME/.travis/travis.sh
 
 ### fzf
 sourceif $HOME/.fzf.zsh
-sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 sourceif "/usr/share/fzf/completion.zsh"
+evalif brew 'sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"'
+
 # loaded after zprezto
 # sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 # sourceif "/usr/share/fzf/key-bindings.zsh"
@@ -305,7 +306,7 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 ## overwrite keybinds...conflict with prezto?
 bindkey -M viins 'jj' vi-cmd-mode
-sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+evalif brew 'sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"'
 sourceif "/usr/share/fzf/key-bindings.zsh"
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
