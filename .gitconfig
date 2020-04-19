@@ -13,7 +13,6 @@
 	templatedir = ~/.git-templates/git-secrets
 [core]
 	ignorecase = false
-	editor = vim
 [hub]
 	protocol = https
 [credential]

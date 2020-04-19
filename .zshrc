@@ -88,10 +88,6 @@ else
     DISTRO_VERSION=$(uname -r)
 fi
 
-export VISUAL=vim
-export LANG=en_US.UTF-8
-export EDITOR="$VISUAL"
-
 function sourceif() {
   [ -e $1 ] && source $@ || true
 }
@@ -99,6 +95,12 @@ function sourceif() {
 function evalif() {
   type $1 >/dev/null 2>&1 && eval "$2" || true
 }
+
+evalif nvim 'export VISUAL=nvim'
+evalif vim 'export VISUAL=vim'
+
+export LANG=en_US.UTF-8
+export EDITOR="$VISUAL"
 
 export GOPATH=$HOME/go
 
