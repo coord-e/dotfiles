@@ -294,13 +294,6 @@ function log_error_proc {
 }
 # zle -N accept-line log_error_proc
 
-## greeting message
-if [ ! -v TMUX ]; then
-if type fortune pokemonsay >/dev/null 2>&1; then
-  fortune | pokemonsay -n
-fi
-fi
-
 ## zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
