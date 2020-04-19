@@ -107,7 +107,6 @@ export GOPATH=$HOME/go
 ## platform dependent configuration
 case "$PLATFORM" in
     *'linux'*)
-        export SHELL='/bin/zsh'
         alias pbcopy='xsel --clipboard --input'
         alias pbpaste='xsel --clipboard --output'
         alias open='xdg-open'
