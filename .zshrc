@@ -38,22 +38,17 @@ alias ls='ls --color=auto'
 alias la='ls -la'
 alias l='ls -F'
 alias xclip='xclip -selection clipboard'
-alias vi='vim'
-alias tolower='tr "[:upper:]" "[:lower:]"'
-alias toupper='tr "[:lower:]" "[:upper:]"'
-alias printvar='set -o posix; set'
 alias mkdir='mkdir -p'
 alias gdb='gdb -q'
 alias df='df -h'
 alias du='du -ch'
-alias cperm='find . \( -type f -exec chmod 0644 {} + \) -or \( -type d -exec chmod 0755 {} + \)'
 alias mkbookpdf="mkbookpdf -I"
 
 alias ssend="slackcat --channel memo"
 
 ## platform detection
 export PLATFORM
-case "$(uname | tolower)" in
+case $(uname | tr '[:upper:]' '[:lower:]') in
   *'linux'*)  PLATFORM='linux'   ;;
   *'darwin'*) PLATFORM='macos'   ;;
   *'bsd'*)    PLATFORM='bsd'     ;;
@@ -243,55 +238,6 @@ function set_mode() {
 function recd() {
   cd "$PWD"
 }
-
-## error logging
-export ERRLOGPATH="$HOME/logs"
-mkdir "$ERRLOGPATH"
-
-function _le {
-  local file="$(mktemp)"
-
-  # Run the supplied command in screen, and print the exit code on exit
-  local screen_cmd='trap '"'"'echo -en "\n"$?'"'"' EXIT; '$@
-  screen -Logfile "$file" -L bash -c "$screen_cmd"
-
-  # Overwrite "screen is terminating" message with empty
-  echo -ne '\033[F'
-# echo -n "[screen is terminating]"
-  echo -n "                       "
-
-  # Last line shows the exit code
-  local -r exit_status=$(tail -1 "$file" | tr -d '[:space:]')
-  sed -i '$d' "$file"
-
-  # Show the log as if it was directly printed to console
-  cat "$file"
-
-  if [ "$exit_status" == "0" ]; then
-    # If the command succeeded, remove the log
-    rm "$file"
-  else
-    mkdir -p $ERRLOGPATH
-    local uuid=$(python -c 'import sys,uuid; sys.stdout.write(uuid.uuid4().hex)')
-    local cmd=$(echo "$@" | cut -d ' ' -f1 | tr -d '[:space:]')
-    local new_file="$ERRLOGPATH/$cmd-$exit_status-$uuid.log"
-    mv "$file" "$new_file"
-    echo "Saved to $new_file"
-  fi
-  return $exit_status
-}
-
-function log_error_proc {
-  if [[ -n "$BUFFER" ]]; then
-    local cmd=$(echo "$BUFFER" | cut -d ' ' -f1 | tr -d '[:space:]')
-    local targets=(clang clang++ gcc g++ python make cmake go cargo rustc node yarn npm pipenv pip docker docker-compose)
-    if [[ ${targets[(r)$cmd]} == $cmd ]]; then
-        BUFFER="_le $BUFFER"
-    fi
-  fi
-  zle .$WIDGET "$@"
-}
-# zle -N accept-line log_error_proc
 
 ## zprezto
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
