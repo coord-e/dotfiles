@@ -207,27 +207,9 @@ export PERL_MB_OPT="--install_base \"$HOME/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
 ## utility functions
-function git-add-untracked () {
-  FILES=$(git ls-files --others --exclude-standard $1)
-  echo $FILES | sed '/^$/d'
-  echo "Adding $(echo ${FILES:+$FILES" "} | grep -o " " | grep -c ^ |
-sed '/^$/d') files"
-  echo $FILES | xargs git add
-}
-
-function lldb-lt() {
-  CORE_PATH="/var/cores/$(ls -t /var/cores/ | head -n 1)"
-  LAST_CMD=$(history 2 | head -n 1 | awk '{print $2;}')
-  if [ -z "$1" ]; then
-    lldb $LAST_CMD -c $CORE_PATH
-  else
-    lldb $1 -c $CORE_PATH
-  fi
-}
-
-function mkempty() {
-  mkdir $1
-  touch $1/.gitkeep
+function git-retag() {
+  git tag -d $1
+  git tag $1
 }
 
 function mkcd() {
@@ -236,11 +218,11 @@ function mkcd() {
 }
 
 function cpd() {
-  local source="$1"
+  local -r src="$1"
   shift
 
   for dist in "$@"; do
-    cp "$source" "$dist"
+    cp "$src" "$dist"
   done
 }
 
@@ -256,6 +238,10 @@ function set_mode() {
   cvt $1 $2 $3 | tail -n1 | sed -e "s/Modeline //" | xargs xrandr --newmode
   xrandr --addmode HDMI-1 "${1}x${2}_${3}.00"
   xrandr --output HDMI-1 --mode ${1}x${2}_${3}.00 --primary --auto --right-of LVDS-1
+}
+
+function recd() {
+  cd "$PWD"
 }
 
 ## error logging
