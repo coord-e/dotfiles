@@ -149,10 +149,10 @@ evalif pyenv 'eval "$(pyenv virtualenv-init -)"'
 evalif rbenv 'eval "$(rbenv init -)"'
 
 ### hub
-evalif hub "$(hub alias -s)"
+evalif hub 'eval "$(hub alias -s)"'
 
 ### direnv
-evalif direnv "$(direnv hook zsh)"
+evalif direnv 'eval "$(direnv hook zsh)"'
 
 ### awscli
 evalif pyenv 'sourceif "$(pyenv which aws_zsh_completer.sh)"'
