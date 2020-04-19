@@ -246,6 +246,14 @@ function cpd() {
   done
 }
 
+function set_mode() {
+  set -x
+
+  cvt $1 $2 $3 | tail -n1 | sed -e "s/Modeline //" | xargs xrandr --newmode
+  xrandr --addmode HDMI-1 "${1}x${2}_${3}.00"
+  xrandr --output HDMI-1 --mode ${1}x${2}_${3}.00 --primary --auto --right-of LVDS-1
+}
+
 ## error logging
 export ERRLOGPATH=$HOME/logs
 mkdir $ERRLOGPATH
