@@ -23,10 +23,6 @@ alias df='df -h'
 alias du='du -ch'
 alias cperm='find . \( -type f -exec chmod 0644 {} + \) -or \( -type d -exec chmod 0755 {} + \)'
 
-alias ghci='stack ghci'
-alias ghc='stack ghc --'
-alias runghc='stack runghc --'
-
 alias ssend="slack file upload --channels 'memo'"
 alias psend="tmux saveb - | ssend --title 'clipboard' > /dev/null"
 
