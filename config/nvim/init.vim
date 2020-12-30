@@ -220,6 +220,8 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " configs
 let NERDTreeShowHidden=1
 
+set foldmethod=marker
+
 syntax on
 filetype indent plugin on
 
