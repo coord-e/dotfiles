@@ -134,6 +134,9 @@ evalif brew 'export PATH="$PATH:$(brew --prefix)/bin"'
 evalif brew 'export PATH="$PATH:$(brew --prefix)/opt/fzf/bin"'
 
 ## Setup tools
+### nix
+sourceif "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -181,9 +184,6 @@ evalif brew 'sourceif "$(brew --prefix)/opt/fzf/shell/completion.zsh"'
 
 ### opam
 sourceif "$HOME/.opam/opam-init/init.zsh"  >/dev/null 2>&1
-
-### nix
-sourceif "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 ### ghcup
 sourceif "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
