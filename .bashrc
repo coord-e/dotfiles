@@ -8,200 +8,24 @@
 
 bind '"jj": vi-movement-mode'
 
-alias ls='ls --color=auto'
-alias la='ls -la'
-alias l='ls -F'
-alias xclip='xclip -selection clipboard'
-alias vi='vim'
-alias tolower='tr "[:upper:]" "[:lower:]"'
-alias toupper='tr "[:lower:]" "[:upper:]"'
-alias printvar='set -o posix; set'
-alias git-ls-untracked='git ls-files --other --exclude-standard'
-alias mkdir='mkdir -p'
-alias gdb='gdb -q'
-alias df='df -h'
-alias du='du -ch'
-alias cperm='find . \( -type f -exec chmod 0644 {} + \) -or \( -type d -exec chmod 0755 {} + \)'
+source "$(dirname $(readlink -f ${BASH_SOURCE[0]}))/etc/common.sh" bash
 
-alias ssend="slack file upload --channels 'memo'"
-alias psend="tmux saveb - | ssend --title 'clipboard' > /dev/null"
+readonly COLOR_RED="\[$(tput setaf 1)\]"
+readonly COLOR_GREEN="\[$(tput setaf 2)\]"
+readonly COLOR_BLUE="\[$(tput setaf 4)\]"
+readonly COLOR_PURPLE="\[$(tput setaf 5)\]"
+readonly COLOR_RESET="\[$(tput sgr0)\]"
 
-export PLATFORM
-case "$(uname | tolower)" in
-  *'linux'*)  PLATFORM='linux'   ;;
-  *'darwin'*) PLATFORM='macos'   ;;
-  *'bsd'*)    PLATFORM='bsd'     ;;
-  *)          PLATFORM='unknown' ;;
-esac
-
-export DISTRO
-export DISTRO_VERSION
-if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
-    . /etc/os-release
-    DISTRO=$NAME
-    DISTRO_VERSION=$VERSION_ID
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    DISTRO=$(lsb_release -si)
-    DISTRO_VERSION=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    # For some versions of Debian/Ubuntu without lsb_release command
-    . /etc/lsb-release
-    DISTRO=$DISTRIB_ID
-    DISTRO_VERSION=$DISTRIB_RELEASE
-elif [ -f /etc/debian_version ]; then
-    # Older Debian/Ubuntu/etc.
-    DISTRO=Debian
-    DISTRO_VERSION=$(cat /etc/debian_version)
-else
-    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-    DISTRO=$(uname -s)
-    DISTRO_VERSION=$(uname -r)
-fi
-
-export EDITOR='vim'
-
-
-if [ "$PLATFORM" = "macos" ]; then
-  export SHELL='/usr/local/bin/bash'
-  export LANG="ja_JP.UTF-8"
-  export PATH="$HOME/Library/Python/3.6/bin/:$PATH"
-else
-  export SHELL='/bin/bash'
-  alias pbcopy='xsel --clipboard --input'
-  alias pbpaste='xsel --clipboard --output'
-  alias open='xdg-open'
-fi
-
-case "$PLATFORM" in
-    *'linux'*)
-        export PATH="$PATH:$HOME/.linuxbrew/bin"
-        export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-        ;;
-    *'darwin'*)
-        ;;
-esac
-
-function sourceif()
-{
-  [ -e $1 ] && source $@
-}
-
-function init-prompt-git-branch()
-{
-  git symbolic-ref HEAD 2>/dev/null >/dev/null &&
-  echo -n "$(git symbolic-ref HEAD 2>/dev/null | sed 's/^refs\/heads\///')"
-  test -n "$(git diff 2>/dev/null)" && echo -n "*"
-}
-
-function init-prompt-git-arrows()
-{
-  BRANCH=$(init-prompt-git-branch)
-  test -n "$(git log ..origin/$BRANCH 2>/dev/null)" && echo -n "⇣"
-  test -n "$(git log origin/$BRANCH.. 2>/dev/null)" && echo -n "⇡"
-}
-
-eval "$(hub alias -s)"
-eval "$(direnv hook bash)"
-
-export GOPATH=$HOME/.go
-
-export PATH=$PATH:$(brew --prefix)/bin
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:./node_modules/.bin
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$(brew --prefix)/opt/fzf/bin
-export PATH=$PATH:$HOME/.gem/ruby/2.4.0/bin
-export PATH=$PATH:$HOME/.rbenv/bin
-export PATH=$PATH:/opt/cling/bin
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/bin:$PATH
-export PATH=/bin:$PATH
-
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-eval "$(rbenv init -)"
-
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-case "$PLATFORM" in
-    *'linux'*)
-        source $(python3 -m site --user-site)/powerline/bindings/bash/powerline.sh
-        ;;
-    *'darwin'*)
-        source $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/bash/powerline.sh
-        ;;
-esac
-
-complete -C "$(which aws_completer)" aws
-sourceif $HOME/.travis/travis.sh
-sourceif $HOME/lib/azure-cli/az.completion
-sourceif $(brew --prefix)/etc/bash_completion
-sourceif "$(brew --prefix)/opt/fzf/shell/completion.bash"
-sourceif "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
-sourceif $HOME/.fzf.bash
-sourceif $HOME/.google-cloud-sdk/completion.bash.inc
-sourceif $HOME/.google-cloud-sdk/path.bash.inc
-sourceif $HOME/.gvm/scripts/gvm
-
-export NVM_DIR="$HOME/.nvm"
-sourceif "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
-sourceif "$(brew --prefix nvm)/bash_completion"  # This loads nvm bash_completion
-
-sourceif $HOME/.nix-profile/etc/profile.d/nix.sh
-
-export HISTCONTROL=ignoredups:erasedups
-shopt -s histappend
-export HISTFILESIZE=100000
-
-export USE_CCACHE=1
-export CCACHE_DIR=$HOME/.ccache
-export PATH=/usr/lib/ccache/:$PATH
-
-export LYNX_CFG=$HOME/.lynxrc
-
-function git-add-untracked () {
-  FILES=$(git ls-files --others --exclude-standard $1)
-  echo $FILES | sed '/^$/d'
-  echo "Adding $(echo ${FILES:+$FILES" "} | grep -o " " | grep -c ^ |
-sed '/^$/d') files"
-  echo $FILES | xargs git add
-}
-
-function lldb-lt() {
-  CORE_PATH="/var/cores/$(ls -t /var/cores/ | head -n 1)"
-  LAST_CMD=$(history 2 | head -n 1 | awk '{print $2;}')
-  if [ -z "$1" ]; then
-    lldb $LAST_CMD -c $CORE_PATH
+## prompt
+function prompt {
+  local -r exit_code=$?
+  local start_color
+  if [ $exit_code -eq 0 ]; then
+    start_color=$COLOR_PURPLE
   else
-    lldb $1 -c $CORE_PATH
+    start_color=$COLOR_RED
   fi
+  PS1="\n$COLOR_BLUE\w\n$start_color❯$COLOR_RESET "
 }
 
-function mkempty() {
-  mkdir $1
-  touch $1/.gitkeep
-}
-
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-if [ ! -v TMUX ]; then
-if type fortune pokemonsay >/dev/null 2>&1; then
-  fortune | pokemonsay -n
-fi
-fi
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/coorde/.sdkman"
-[[ -s "/home/coorde/.sdkman/bin/sdkman-init.sh" ]] && source "/home/coorde/.sdkman/bin/sdkman-init.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+PROMPT_COMMAND='prompt'

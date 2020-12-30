@@ -12,8 +12,7 @@ cd $HOME/dotfiles
 
 ## Environment details
 
-- [zsh](http://www.zsh.org) + [zprezto](https://github.com/sorin-ionescu/prezto) (shell)
-- [bash](https://www.gnu.org/software/bash/) (scripting)
+- [bash](https://www.gnu.org/software/bash/)
 - [tmux](http://tmux.github.io/) + [tpm](https://github.com/tmux-plugins/tpm)
 - [nvim](https://neovim.io/)
 - [alacritty](https://github.com/jwilm/alacritty) / [iTerm2](https://www.iterm2.com/)
