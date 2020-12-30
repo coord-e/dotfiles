@@ -2,18 +2,20 @@
   "coc.preferences.formatOnSaveFiletypes": ["haskell", "rust"],
   "languageserver": {
     "haskell": {
-      "command": "/home/coorde/.nix-profile/bin/hie-wrapper",
+      "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
       "rootPatterns": [
         "*.cabal",
         ".stack.yaml",
         "cabal.project",
-        "package.yaml"
+        "package.yaml",
+        "hie.yaml"
       ],
       "filetypes": [
         "hs",
         "lhs",
-        "haskell"
+        "haskell",
+        "lhaskell"
       ],
       "initializationOptions": {
         "languageServerHaskell": {
