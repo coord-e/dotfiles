@@ -1,5 +1,6 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["haskell", "rust"],
+  "coc.preferences.formatOnSaveFiletypes": ["haskell", "rust", "typescript"],
+  "tsserver.npm": "/usr/bin/npm",
   "languageserver": {
     "haskell": {
       "command": "haskell-language-server-wrapper",
